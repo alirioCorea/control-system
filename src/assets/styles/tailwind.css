@@ -10,7 +10,7 @@ Document
 /**
 Use a better box model (opinionated).
 */
-
+-webkit-print-color-adjust
 *,
 *::before,
 *::after {
@@ -1642,7 +1642,7 @@ select {
 }
 
 .-m-24 {
-  margin: -6rem;
+  margin: 3rem;
 }
 
 .my-2 {
