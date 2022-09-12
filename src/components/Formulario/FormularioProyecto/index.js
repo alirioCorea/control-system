@@ -5,7 +5,7 @@ import  {getDatos}  from "services";
 
 export default function FormularioProyecto() {
 
-    const listaEstados = "http://127.0.0.1:8000/api/pro_estatus/lista";
+    const listaEstados = "https://127.0.0.1:49161/api/pro_estatus/lista";
 
     //Lista de estados
     const[estados,setEstados]=useState([]);

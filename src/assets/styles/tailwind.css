@@ -10,7 +10,7 @@ Document
 /**
 Use a better box model (opinionated).
 */
-
+-webkit-print-color-adjust
 *,
 *::before,
 *::after {
