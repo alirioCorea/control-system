@@ -1,9 +1,7 @@
 import {useState} from 'react'
 import  {postDatos}  from "services";
-
-const API = "http://127.0.0.1:8000/api/proyecto/agregar";
   
-export const useForm=(initialFrom,validateForm)=> {
+export const useForm=(initialFrom,validateForm,token)=> {
    const [form, setForm] = useState(initialFrom);
    const [error, setError] = useState({});
    const [loading, setLoading] = useState(false);
@@ -30,7 +28,7 @@ export const useForm=(initialFrom,validateForm)=> {
     setError(validateForm(form));
     if(Object.keys(error).length===0){
       setLoading(true);
-      const respuesta =postDatos(API,form);
+      const respuesta =postDatos(token,form);
       respuesta.then((res)=>{
         if(res.status===200){
           setLoading(false);

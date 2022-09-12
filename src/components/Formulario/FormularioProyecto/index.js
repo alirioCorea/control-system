@@ -6,6 +6,7 @@ import  {getDatos}  from "services";
 export default function FormularioProyecto() {
 
     const listaEstados = "http://127.0.0.1:8000/api/pro_estatus/lista";
+    const crearProyecto = "http://127.0.0.1:8000/api/proyecto/agregar";
 
     //Lista de estados
     const[estados,setEstados]=useState([]);
@@ -53,7 +54,7 @@ export default function FormularioProyecto() {
         handleChange,
         handleBlur,
         handSubmit
-    }=useForm(proyectoInicial,validationsForm);
+    }=useForm(proyectoInicial,validationsForm,crearProyecto);
 
     //Llamo a la funcion (que devuelve un apromesa) y que requiere de la url de la API
     useEffect(() => {
