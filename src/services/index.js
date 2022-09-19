@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2NjMwMTQ4NDUsImV4cCI6MTY2MzAxODQ0NSwibmJmIjoxNjYzMDE0ODQ1LCJqdGkiOiJyb3RJS3pUUDB3RlNwcTNFIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.wwxSAX4tLG13LtYR5CRh0cvMoe0_cVfnw8K6LNUIapA";
+const token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2NjMxODY2MTMsImV4cCI6MTY2MzI3MzAxMywibmJmIjoxNjYzMTg2NjEzLCJqdGkiOiJhOUQ3SUtSOGI3ZFc5R21rIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.k5cjNLO4ZdMw2D82BtOGgSnVqUJ87QyCP5yqAHGFvaw";
 
 export const getDatos = async (API) => {
   try{
@@ -34,6 +34,6 @@ export const postDatos = async (API,form) => {
     return respuesta;
   }
   catch(error){ 
-    console.log(error.response.data.message);
+    console.log(error.response.data);
   }
 }

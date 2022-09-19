@@ -1,10 +1,8 @@
-import axios from "axios";
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "hook/useForm";
 
 export default function Login() {
-  const baseUrl = "https://127.0.0.1:49161/api/auth/login";
+  const API = "https://127.0.0.1:49161/api/auth/login";
   
   const usuarioInicial={
     email:"",
@@ -17,7 +15,7 @@ export default function Login() {
       error.email="* El campo email es requerido o no es valido"
     }
     if(!form.passwords.trim()){
-      error.passwords="* El email es requerido o no es valido"
+      error.passwords="* La password es requerido o no es valido"
     }
     return error;
 }
@@ -30,30 +28,7 @@ const {
   handleChange,
   handleBlur,
   handSubmit
-}=useForm(usuarioInicial,validationsForm);
-  
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        baseUrl,
-        JSON.stringify({ email: email, password: password }),
-        {
-          headers: { "Content-type": "application/json" },
-        }
-      );
-      console.log(response.data);
-      console.log(response.accessToken);
-      alert(response.status);
-      alert('login successfully');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+}=useForm(usuarioInicial,validationsForm,API);
 
   return (
     <>
@@ -97,7 +72,7 @@ const {
                 <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handSubmit}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -127,10 +102,13 @@ const {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
-                      value={password}
+                      name="passwords"
+                      onChange={handleChange}
+                      value={form.passwords}
+                      onBlur={handleBlur}
                     />
                   </div>
+                  {error.passwords && <p className="text-red-600">{error.passwords}</p>}
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
@@ -148,6 +126,7 @@ const {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="submit"
+                      disabled={form.email==="" || form.passwords===""}
                     >
                       Sign In
                     </button>

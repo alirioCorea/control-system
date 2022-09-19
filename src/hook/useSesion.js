@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import  {postDatos}  from "services";
   
-export const useForm=(initialFrom,validateForm,token)=> {
+export const useSesion=(initialFrom,validateForm,token)=> {
    const [form, setForm] = useState(initialFrom);
    const [error, setError] = useState({});
    const [loading, setLoading] = useState(false);
@@ -15,9 +15,10 @@ export const useForm=(initialFrom,validateForm,token)=> {
       [name]:value
     });
   }
+ 
      /* Manejo de los errores de los inputs (se activa al quitar el foco de algun input)*/
    const handleBlur=(event)=>{
-    handleChange(event); 
+    handleChange(event);
     setError(validateForm(form));
    }
 
@@ -25,7 +26,6 @@ export const useForm=(initialFrom,validateForm,token)=> {
    const handSubmit=(event)=>{
     event.preventDefault();
     setError(validateForm(form));
-    console.log(form);
     if(Object.keys(error).length===0){
       setLoading(true);
       const respuesta =postDatos(token,form);
